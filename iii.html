@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>지도 생성하기</title>
+    
+</head>
+<body>
+<!-- 지도를 표시할 div 입니다 -->
+<div id="map" style="width:100%;height:700px;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b08bbbae24eab1c349fdd38e773a8f67"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(35.16284467441265, 129.05316297822904), // 지도의 중심좌표
+        level: 6 // 지도의 확대 레벨
+    };
+var data = [
+    {name:'가야중복도로(노상)',x:35.15130998,y:129.0241527},
+    {name:'가야공원진입로(노상)',x:35.15072727,y:129.0297645},
+    {name:'신부산빌딩 앞(소망빌딩)(노상)',x:35.1422231,y:129.0618871},
+    {name:'범천동신암로(노상)',x:35.14867928,y:129.0533226},
+    {name:'경남공고 뒤(노상)',x:35.15371912,y:129.0634983},
+    {name:'주례초등학교(노외)',x:35.14579543,y:129.0194537},
+    {name:'유원오피스텔 뒤(노외)',x:35.15973252,y:129.0551543},
+    {name:'가야공원(노외)',x:35.14721452,y:129.029831}
+];
+// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+for(obj of data){
+    new kakao.maps.InfoWindow({
+        map: map, // 인포윈도우가 표시될 지도
+        position : new kakao.maps.LatLng(obj.x,obj.y),
+        content : '<div style="padding:5px;">'+obj.name+'</div>',
+        removable : true
+    })
+}   
+</script>
+</body>
+</html>
